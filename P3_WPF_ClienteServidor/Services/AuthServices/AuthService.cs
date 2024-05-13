@@ -21,7 +21,7 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
         {
             string JsonModel = JsonConvert.SerializeObject(loginModel);
             StringContent content = new StringContent(JsonModel, Encoding.UTF8, "application/json");
-            var response = await client.PostAsync("api/Login", content);
+            var response = await client.PostAsync("api/login", content);
             try
             {
                 var result = await response.Content.ReadAsStringAsync();

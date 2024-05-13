@@ -101,9 +101,9 @@
             </Grid.ColumnDefinitions>
             <!--<Button Grid.Column="0" Command="{Binding DirectoresCommand}">Directores de Área</Button>-->
             <!--<Button Grid.Column="0" Command="{Binding SubdirectoresCommand}">Subdirectores de Área</Button>-->
-            <Button Grid.Column="0" Command="{Binding ActividadesCommand}">Actividades</Button>
-            <Button Grid.Column="1" Command="{Binding JefesCommand}">Jefes de Departamento</Button>
-            <Button Grid.Column="2" Command="{Binding MiembrosCommand}">Miembros</Button>
+            <Button Grid.Column="0" Command="{Binding ActividadesCommand}" x:Name="BtnActividades">Actividades</Button>
+            <Button Grid.Column="1" Command="{Binding JefesCommand}" x:Name="BtnJefes">Jefes de Departamento</Button>
+            <Button Grid.Column="2" Command="{Binding MiembrosCommand}" x:Name="BtnMiembros">Miembros</Button>
         </Grid>
 
     </Grid>
