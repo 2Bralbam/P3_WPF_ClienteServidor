@@ -4,9 +4,7 @@
              xmlns:local="clr-namespace:P3_WPF_ClienteServidor"
              StartupUri="/Views/MainView.xaml">
     <Application.Resources>
-        <Style TargetType="UserControl">
-            <Setter Property="Background" Value="#003430"/>
-        </Style>
+        
         <Style TargetType="Label">
             <Setter Property="Foreground" Value="#689D99"/>
             <Setter Property="FontFamily" Value="Andor.ttf"/>

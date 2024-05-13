@@ -14,10 +14,9 @@ namespace P3_WPF_ClienteServidor.ViewModels
     public class MainViewModel:INotifyPropertyChanged
     {
         public string NombreVista { get; set; } = "LoginView";
-
-
         public MainViewModel()
         {
+
             VMMessaging.CambiarDeVista += ChangeView;
         }
 
@@ -26,6 +25,7 @@ namespace P3_WPF_ClienteServidor.ViewModels
             if(string.IsNullOrEmpty(e))
             {
                 MessageBox.Show("La vista especificada no existe");
+                return;
             }
             NombreVista = e;
             OnPropertyChanged(nameof(NombreVista));

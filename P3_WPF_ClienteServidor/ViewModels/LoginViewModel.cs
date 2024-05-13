@@ -71,7 +71,7 @@ namespace P3_WPF_ClienteServidor.ViewModels
             //    {
 
             //    }
-               VMMessaging.CambiarVista("DirectorGeneralView");
+               VMMessaging.CambiarVista(Username);
             //}
             
         }

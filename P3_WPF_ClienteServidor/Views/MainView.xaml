@@ -48,6 +48,8 @@
                     <DataTrigger Value="DirectorGeneralView" Binding="{Binding NombreVista}">
                         <Setter Property="Content" Value="{StaticResource DirectorGeneralControl}"/>
                     </DataTrigger>
+                    
+                    
                 </Style.Triggers>
             </Style>
         </ContentControl.Style>
