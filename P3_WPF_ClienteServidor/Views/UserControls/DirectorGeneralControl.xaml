@@ -1,0 +1,78 @@
+﻿<UserControl x:Class="P3_WPF_ClienteServidor.Views.UserControls.DirectorGeneralControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:vm="clr-namespace:P3_WPF_ClienteServidor.ViewModels"
+             xmlns:local="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <vm:DirectoresViewModel></vm:DirectoresViewModel>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#689D99"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Cursor" Value="Hand"/>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="40"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
+        </Grid.RowDefinitions>
+        <Label>
+            Sistema de registro de actividades
+        </Label>
+        <Label Grid.Row="1" HorizontalAlignment="Left" Margin="10,0,0,0">
+            Bienvenido director general {NOMBRE}
+        </Label>
+        <Button Width="40" Height="40" Grid.Row="1" HorizontalAlignment="Right" Command="{Binding LogoutCommand}" Margin="0,0,10,0">
+            <Button.Template>
+                <ControlTemplate TargetType="Button">
+                    <Border Background="{TemplateBinding Background}">
+                        <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
+                    </Border>
+                </ControlTemplate>
+            </Button.Template>
+            <Button.Style>
+                <Style TargetType="Button">
+                    <Setter Property="Background" Value="LightGray" />
+                    <Setter Property="Cursor" Value="Hand"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsMouseOver" Value="True">
+                            <Setter Property="Background" Value="Red" />
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </Button.Style>
+            <Button.Background>
+                <ImageBrush ImageSource="Resources/Icons/LogoutIcon.png"/>
+            </Button.Background>
+        </Button>
+        <Label Grid.Row="2">CONTENIDO</Label>
+        <Label Grid.Row="3">MENU FOOTER</Label>
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="0">Actividades</Button>
+            <Button Grid.Column="1">Directores de Área</Button>
+            <Button Grid.Column="2">Subdirectores de Área</Button>
+            <Button Grid.Column="3">Jefes de Departamento</Button>
+            <Button Grid.Column="4">Miembros</Button>
+        </Grid>
+
+    </Grid>
+</UserControl>
