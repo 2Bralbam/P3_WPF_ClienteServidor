@@ -40,40 +40,40 @@ namespace P3_WPF_ClienteServidor.ViewModels
         
         private async void Login()
         {
-            ErrorMessages = string.Empty;
-            if (string.IsNullOrWhiteSpace(Username) && string.IsNullOrWhiteSpace(Password))
-            {
-                ErrorMessages = "Introduzca su correo y contraseña";
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(Username))
-            {
-                ErrorMessages = "Introduzca su correo\n";
-            }
-            if (string.IsNullOrWhiteSpace(Password))
-            {
-                ErrorMessages = "Introduzca su contraseña";
-            }
-            if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
-            {
-                ErrorMessages = string.Empty;
-                LoginModel loginModel = new()
-                {
-                    name = Username,
-                    password = Password
-                };
-                string? response = await authService.Login(loginModel);
-                if (response == null)
-                {
-                    ErrorMessages = "No se inició sesión";
-                    return;
-                }
-                else
-                {
+            //ErrorMessages = string.Empty;
+            //if (string.IsNullOrWhiteSpace(Username) && string.IsNullOrWhiteSpace(Password))
+            //{
+            //    ErrorMessages = "Introduzca su correo y contraseña";
+            //    return;
+            //}
+            //if (string.IsNullOrWhiteSpace(Username))
+            //{
+            //    ErrorMessages = "Introduzca su correo\n";
+            //}
+            //if (string.IsNullOrWhiteSpace(Password))
+            //{
+            //    ErrorMessages = "Introduzca su contraseña";
+            //}
+            //if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
+            //{
+            //    ErrorMessages = string.Empty;
+            //    LoginModel loginModel = new()
+            //    {
+            //        email = Username,
+            //        password = Password
+            //    };
+            //    string? response = await authService.Login(loginModel);
+            //    if (response == null)
+            //    {
+            //        ErrorMessages = "No se inició sesión";
+            //        return;
+            //    }
+            //    else
+            //    {
 
-                }
+            //    }
                 VMMessaging.CambiarVista(Username);
-            }
+            //}
 
         }
         public void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
