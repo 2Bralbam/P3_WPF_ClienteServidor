@@ -7,7 +7,73 @@
              mc:Ignorable="d" 
              x:Name="View"
              d:DesignHeight="450" d:DesignWidth="800">
+    
     <Grid>
-        <Label>AdminActividadesControl</Label>
+        <!--<Label>AdminActividadesControl</Label>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.Resources>
+            <Style TargetType="ListView">
+                <Setter Property="Background" Value="#236863"/>
+                <Setter Property="BorderBrush" Value="Transparent"/>
+                <Setter Property="BorderThickness" Value="0"/>
+            </Style>
+        </Grid.Resources>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Fill="Black" Opacity=".6"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Label Grid.Column="0" VerticalAlignment="Top">Departamento</Label>
+                <ComboBox Grid.Column="0" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <Label Grid.Column="1" VerticalAlignment="Top">Fecha Creación</Label>
+                <ComboBox Grid.Column="1" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <Label Grid.Column="2" VerticalAlignment="Top">Fecha Actualización</Label>
+                <ComboBox Grid.Column="2" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <Label Grid.Column="3" VerticalAlignment="Top">Fecha Realización</Label>
+                <ComboBox Grid.Column="3" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <Label Grid.Column="4" VerticalAlignment="Top">Estado</Label>
+                <ComboBox Grid.Column="4" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <Grid Grid.Column="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Label Grid.Column="0" VerticalAlignment="Top">FILTROS</Label>
+
+                    <StackPanel Grid.Row="1" VerticalAlignment="Center" Orientation="Horizontal" HorizontalAlignment="Center">
+                        <Button Content="Buscar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3" Width="60" Background="#5FAE57"></Button>
+                        <Button Content="Limpiar" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="3" Width="60" Background="#D4726A"></Button>
+                    </StackPanel>
+                </Grid>
+            </Grid>
+        </Grid>
+        <ListView x:Name="ListView" Grid.Row="1">
+            
+            <ListView.View>
+                <GridView>
+                    <GridViewColumn x:Name="Uno" Header="Fecha de Creación" DisplayMemberBinding="{Binding FechaCreacion}" />
+                    <GridViewColumn x:Name="Dos" Header="Fecha de Realización" DisplayMemberBinding="{Binding FechaRealizacion}" />
+                    <GridViewColumn x:Name="Tres" Header="Fecha de Actualización" DisplayMemberBinding="{Binding FechaActualizacion}" />
+                    <GridViewColumn x:Name="Cuatro" Header="Estado del Ítem" DisplayMemberBinding="{Binding EstadoItem}" />
+                </GridView>
+            </ListView.View>
+        </ListView>
     </Grid>
 </UserControl>

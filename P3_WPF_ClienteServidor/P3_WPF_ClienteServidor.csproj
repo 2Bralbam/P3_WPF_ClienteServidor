@@ -9,6 +9,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <None Remove="Assets\logoBlanco_WEB.png" />
     <None Remove="Views\UserControls\Resources\Fonts\Andor.ttf" />
     <None Remove="Views\UserControls\Resources\Icons\LogoutIcon.png" />
   </ItemGroup>
@@ -19,6 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Resource Include="Assets\logoBlanco_WEB.png" />
     <Resource Include="Views\UserControls\Resources\Fonts\Andor.ttf" />
     <Resource Include="Views\UserControls\Resources\Icons\LogoutIcon.png" />
   </ItemGroup>

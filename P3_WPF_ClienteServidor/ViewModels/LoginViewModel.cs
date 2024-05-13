@@ -16,6 +16,7 @@ namespace P3_WPF_ClienteServidor.ViewModels
     public class LoginViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
+        
         public string? Username { get; set; }
         public string? Password { get; set; }
         private string? _errorMessages { get; set; }
@@ -40,7 +41,7 @@ namespace P3_WPF_ClienteServidor.ViewModels
         private async void Login()
         {
             //ErrorMessages = string.Empty;
-            //if(string.IsNullOrWhiteSpace(Username) && string.IsNullOrWhiteSpace(Password))
+            //if (string.IsNullOrWhiteSpace(Username) && string.IsNullOrWhiteSpace(Password))
             //{
             //    ErrorMessages = "Introduzca su correo y contraseña";
             //    return;
@@ -49,20 +50,20 @@ namespace P3_WPF_ClienteServidor.ViewModels
             //{
             //    ErrorMessages = "Introduzca su correo\n";
             //}
-            //if(string.IsNullOrWhiteSpace(Password))
+            //if (string.IsNullOrWhiteSpace(Password))
             //{
             //    ErrorMessages = "Introduzca su contraseña";
             //}
-            //if(!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
+            //if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
             //{
-            //    ErrorMessages=string.Empty;
+            //    ErrorMessages = string.Empty;
             //    LoginModel loginModel = new()
             //    {
             //        name = Username,
             //        password = Password
             //    };
             //    string? response = await authService.Login(loginModel);
-            //    if(response == null)
+            //    if (response == null)
             //    {
             //        ErrorMessages = "No se inició sesión";
             //        return;
@@ -71,9 +72,9 @@ namespace P3_WPF_ClienteServidor.ViewModels
             //    {
 
             //    }
-               VMMessaging.CambiarVista(Username);
+                VMMessaging.CambiarVista("DirectorGeneralView");
             //}
-            
+
         }
         public void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {

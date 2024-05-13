@@ -27,6 +27,18 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
             View.Opacity = 0;
             this.Loaded += MainView_Loaded;
             this.Unloaded += ViewUnloaded;
+            ListView.SizeChanged += async(sender,e) => _ = ActividadesControl_SizeChanged(sender, e);
+        }
+
+        private async Task ActividadesControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            double Size = e.NewSize.Width;
+            double NewColumSize = Size / 4;
+            Uno.Width = NewColumSize;
+            Dos.Width = NewColumSize;
+            Tres.Width = NewColumSize;
+            Cuatro.Width = NewColumSize;
+
         }
 
         private void ViewUnloaded(object sender, RoutedEventArgs e)

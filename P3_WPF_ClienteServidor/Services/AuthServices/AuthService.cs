@@ -32,13 +32,17 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
                 }
                 else
                 {
+#if DEBUG
                     MessageBox.Show($"Error al hacer login:{result}","Error");
+#endif
                     return null;
                 }
             }
             catch(Exception e)
             {
+#if DEBUG
                 MessageBox.Show($"Error al hacer login: {e.Message}","Error");
+#endif
                 return null;
             }
             

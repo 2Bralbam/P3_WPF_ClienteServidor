@@ -13,6 +13,7 @@ namespace P3_WPF_ClienteServidor.ViewModels
 {
     public class MainViewModel:INotifyPropertyChanged
     {
+        private readonly string[] ValidViews = { "DirectorGeneralView", "JefesView", "SubdirectoresView", "DirectoresView", "MiembrosView", "LoginView" };
         public string NombreVista { get; set; } = "LoginView";
         public MainViewModel()
         {
@@ -24,10 +25,21 @@ namespace P3_WPF_ClienteServidor.ViewModels
         {
             if(string.IsNullOrEmpty(e))
             {
+#if DEBUG
                 MessageBox.Show("La vista especificada no existe");
+#endif
                 return;
             }
-            NombreVista = e;
+            if(ValidViews.Contains(e))
+            {
+                NombreVista = e;
+            }
+            else
+            {
+#if DEBUG
+                MessageBox.Show("La vista especificada no existe");
+#endif
+            }
             OnPropertyChanged(nameof(NombreVista));
         }
 

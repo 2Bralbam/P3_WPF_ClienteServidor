@@ -18,6 +18,8 @@
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="FontSize" Value="14"/>
             <Setter Property="Cursor" Value="Hand"/>
+            <Setter Property="BorderBrush" Value="Transparent"/>
+            <Setter Property="BorderThickness" Value="1"/>
         </Style>
     </UserControl.Resources>
     <Grid>
@@ -99,11 +101,11 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0" Command="{Binding DirectoresCommand}">Directores de Área</Button>
-            <Button Grid.Column="1" Command="{Binding SubdirectoresCommand}">Subdirectores de Área</Button>
-            <Button Grid.Column="2" Command="{Binding ActividadesCommand}">Actividades</Button>
-            <Button Grid.Column="3" Command="{Binding JefesCommand}">Jefes de Departamento</Button>
-            <Button Grid.Column="4" Command="{Binding MiembrosCommand}">Miembros</Button>
+            <Button Grid.Column="0" Command="{Binding DirectoresCommand}" x:Name="BtnDirectores">Directores de Área</Button>
+            <Button Grid.Column="1" Command="{Binding SubdirectoresCommand}" x:Name="BtnSubdirectores">Subdirectores de Área</Button>
+            <Button Grid.Column="2" Command="{Binding ActividadesCommand}" x:Name="BtnActividades">Actividades</Button>
+            <Button Grid.Column="3" Command="{Binding JefesCommand}" x:Name="BtnJefes">Jefes de Departamento</Button>
+            <Button Grid.Column="4" Command="{Binding MiembrosCommand}" x:Name="BtnMiembros">Miembros</Button>
         </Grid>
 
     </Grid>

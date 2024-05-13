@@ -8,8 +8,8 @@
         xmlns:vm="clr-namespace:P3_WPF_ClienteServidor.ViewModels"
         mc:Ignorable="d"
         MinHeight="400"
-        MinWidth="600"
-        Title="Registro de actividades" Height="450" Width="800">
+        MinWidth="950"
+        Title="Registro de actividades" Height="450" Width="950">
     <Window.DataContext>
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
@@ -18,40 +18,48 @@
             <Setter Property="Background" Value="#003430"/>
         </Style>
     </Window.Style>
-    <ContentControl x:Name="View">
-        <ContentControl.Resources>
-            <ControlViews:DirectoresControl x:Key="DirectoresControl"/>
-            <ControlViews:MiembrosControl x:Key="ActividadesControl"/>
-            <ControlViews:JefesControl x:Key="JefesControl"/>
-            <ControlViews:SubdirectoresControl x:Key="SubdirectoresControl"/>
-            <ControlViews:LoginControl x:Key="LoginControl"/>
-            <ControlViews:DirectorGeneralControl x:Key="DirectorGeneralControl"/>
-        </ContentControl.Resources>
-        <ContentControl.Style>
-            <Style TargetType="ContentControl">
-                <Style.Triggers>
-                    <DataTrigger Value="LoginView" Binding="{Binding NombreVista}">
-                        <Setter Property="Content" Value="{StaticResource LoginControl}"/>
-                    </DataTrigger>
-                    <DataTrigger Value="DirectoresView" Binding="{Binding NombreVista}">
-                        <Setter Property="Content" Value="{StaticResource DirectoresControl}"/>
-                    </DataTrigger>
-                    <DataTrigger Value="MiembrosView" Binding="{Binding NombreVista}">
-                        <Setter Property="Content" Value="{StaticResource ActividadesControl}"/>
-                    </DataTrigger>
-                    <DataTrigger Value="JefesView" Binding="{Binding NombreVista}">
-                        <Setter Property="Content" Value="{StaticResource JefesControl}"/>
-                    </DataTrigger>
-                    <DataTrigger Value="SubdirectoresView" Binding="{Binding NombreVista}">
-                        <Setter Property="Content" Value="{StaticResource SubdirectoresControl}"/>
-                    </DataTrigger>
-                    <DataTrigger Value="DirectorGeneralView" Binding="{Binding NombreVista}">
-                        <Setter Property="Content" Value="{StaticResource DirectorGeneralControl}"/>
-                    </DataTrigger>
-                    
-                    
-                </Style.Triggers>
-            </Style>
-        </ContentControl.Style>
-    </ContentControl>
+    <Grid>
+        <Border Opacity=".02" Width="600" Height="600">
+            <Border.Background>
+                <ImageBrush ImageSource="/Assets/logoBlanco_WEB.png"/>
+            </Border.Background>
+        </Border>
+        <ContentControl x:Name="View">
+            <ContentControl.Resources>
+                <ControlViews:DirectoresControl x:Key="DirectoresControl"/>
+                <ControlViews:MiembrosControl x:Key="ActividadesControl"/>
+                <ControlViews:JefesControl x:Key="JefesControl"/>
+                <ControlViews:SubdirectoresControl x:Key="SubdirectoresControl"/>
+                <ControlViews:LoginControl x:Key="LoginControl"/>
+                <ControlViews:DirectorGeneralControl x:Key="DirectorGeneralControl"/>
+            </ContentControl.Resources>
+            <ContentControl.Style>
+                <Style TargetType="ContentControl">
+                    <Style.Triggers>
+                        <DataTrigger Value="LoginView" Binding="{Binding NombreVista}">
+                            <Setter Property="Content" Value="{StaticResource LoginControl}"/>
+                        </DataTrigger>
+                        <DataTrigger Value="DirectoresView" Binding="{Binding NombreVista}">
+                            <Setter Property="Content" Value="{StaticResource DirectoresControl}"/>
+                        </DataTrigger>
+                        <DataTrigger Value="MiembrosView" Binding="{Binding NombreVista}">
+                            <Setter Property="Content" Value="{StaticResource ActividadesControl}"/>
+                        </DataTrigger>
+                        <DataTrigger Value="JefesView" Binding="{Binding NombreVista}">
+                            <Setter Property="Content" Value="{StaticResource JefesControl}"/>
+                        </DataTrigger>
+                        <DataTrigger Value="SubdirectoresView" Binding="{Binding NombreVista}">
+                            <Setter Property="Content" Value="{StaticResource SubdirectoresControl}"/>
+                        </DataTrigger>
+                        <DataTrigger Value="DirectorGeneralView" Binding="{Binding NombreVista}">
+                            <Setter Property="Content" Value="{StaticResource DirectorGeneralControl}"/>
+                        </DataTrigger>
+
+
+                    </Style.Triggers>
+                </Style>
+            </ContentControl.Style>
+        </ContentControl>
+    </Grid>
+    
 </Window>
