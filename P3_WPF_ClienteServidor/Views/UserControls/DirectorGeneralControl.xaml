@@ -67,9 +67,9 @@
                 <ColumnDefinition Width="*"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="0">Actividades</Button>
-            <Button Grid.Column="1">Directores de Área</Button>
-            <Button Grid.Column="2">Subdirectores de Área</Button>
+            <Button Grid.Column="0">Directores de Área</Button>
+            <Button Grid.Column="1">Subdirectores de Área</Button>
+            <Button Grid.Column="2">Actividades</Button>
             <Button Grid.Column="3">Jefes de Departamento</Button>
             <Button Grid.Column="4">Miembros</Button>
         </Grid>

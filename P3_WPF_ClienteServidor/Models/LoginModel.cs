@@ -8,7 +8,7 @@ namespace P3_WPF_ClienteServidor.Models
 {
     public class LoginModel
     {
-        public string Username { get; set; } = null!;
-        public string Password { get; set; } = null!;
+        public string name { get; set; } = null!;
+        public string password { get; set; } = null!;
     }
 }
