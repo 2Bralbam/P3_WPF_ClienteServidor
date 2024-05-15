@@ -40,10 +40,10 @@
                 <ComboBox Grid.Column="1" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
                 <Label Grid.Column="2" VerticalAlignment="Top">Fecha Actualización</Label>
                 <ComboBox Grid.Column="2" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
-                <Label Grid.Column="3" VerticalAlignment="Top">Fecha Realización</Label>
+                <!--<Label Grid.Column="3" VerticalAlignment="Top">Fecha Realización</Label>
                 <ComboBox Grid.Column="3" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
                 <Label Grid.Column="4" VerticalAlignment="Top">Estado</Label>
-                <ComboBox Grid.Column="4" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <ComboBox Grid.Column="4" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>-->
                 <Grid Grid.Column="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -62,10 +62,11 @@
             
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="Uno" Header="Fecha de Creación" DisplayMemberBinding="{Binding FechaCreacion}" />
-                    <GridViewColumn x:Name="Dos" Header="Fecha de Realización" DisplayMemberBinding="{Binding FechaRealizacion}" />
-                    <GridViewColumn x:Name="Tres" Header="Fecha de Actualización" DisplayMemberBinding="{Binding FechaActualizacion}" />
-                    <GridViewColumn x:Name="Cuatro" Header="Estado del Ítem" DisplayMemberBinding="{Binding EstadoItem}" />
+                    <GridViewColumn x:Name="Uno" Header="Nombre" DisplayMemberBinding="{Binding Nombre}"/>
+                    <GridViewColumn x:Name="Dos" Header="Fecha de Creación" DisplayMemberBinding="{Binding FechaCreacion}" />
+                    <GridViewColumn x:Name="Tres" Header="Fecha de Realización" DisplayMemberBinding="{Binding FechaRealizacion}" />
+                    <GridViewColumn x:Name="Cuatro" Header="Fecha de Actualización" DisplayMemberBinding="{Binding FechaActualizacion}" />
+                    <!--<GridViewColumn x:Name="Cuatro" Header="Estado del Ítem" DisplayMemberBinding="{Binding EstadoItem}" />-->
                 </GridView>
             </ListView.View>
         </ListView>

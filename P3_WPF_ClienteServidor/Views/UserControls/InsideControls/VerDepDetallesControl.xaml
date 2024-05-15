@@ -7,6 +7,72 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <!--<Label>AdminActividadesControl</Label>-->
+        <Grid.RowDefinitions>
+            <RowDefinition Height="60"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1.5"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <Rectangle Grid.Row="0" Fill="Black" Opacity=".6"/>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Button Grid.Column="0" Width="120">
+                    Volver
+                </Button>
+            </Grid>
+        </Grid>
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Row="0">
+                <Label>Titulo:</Label>
+                <Label>Se hizo una supervicion de las subdirecciones</Label>
+            </StackPanel>
+            <StackPanel Grid.Row="1">
+                <Label>Descripcion:</Label>
+                <TextBlock TextWrapping="Wrap">
+                   Las subirecciones de investigacion y subdireaccion academica tuvieron una supervicion por parte de direccion academica 
+                </TextBlock>
+            </StackPanel>
+            <Grid Grid.Row="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="30"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="50"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0" VerticalAlignment="bottom">Imagen:</Label>
+                <Image Grid.Row="1" Width="150" Height="100" VerticalAlignment="Center" Source="https://cdn.papershift.com/20221215043821/Inspeccion-de-trabajo-scaled.jpg">
+
+                </Image>
+                <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                        <Button Margin="10" Height="30" Width="100">
+                            Editar
+                        </Button>
+                    <Button Margin="10" Height="30" Width="100">
+                        Eliminar
+                    </Button>
+                </StackPanel>
+            </Grid>
+        </Grid>
     </Grid>
 </UserControl>
