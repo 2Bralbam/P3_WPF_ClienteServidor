@@ -47,11 +47,11 @@
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
-                <Label>Titulo:</Label>
+                <Label FontWeight="Bold">Titulo:</Label>
                 <Label Content="{Binding Actividad.Titulo}"></Label>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Label>Descripcion:</Label>
+                <Label FontWeight="Bold">Descripcion:</Label>
                 <TextBlock TextWrapping="Wrap" Text="{Binding Actividad.Descripcion}" Height="40">
                 </TextBlock>
             </StackPanel>
@@ -61,7 +61,7 @@
                     <RowDefinition Height="*"/>
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
-                <Label Grid.Row="0" VerticalAlignment="bottom">Imagen:</Label>
+                <Label Grid.Row="0" VerticalAlignment="bottom" FontWeight="Bold">Imagen:</Label>
                 <Image Grid.Row="1" MinWidth="150" MinHeight="100" VerticalAlignment="Center" Source="https://cdn.papershift.com/20221215043821/Inspeccion-de-trabajo-scaled.jpg">
 
                 </Image>

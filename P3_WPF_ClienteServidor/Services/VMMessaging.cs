@@ -100,5 +100,23 @@ namespace P3_WPF_ClienteServidor.Services
             HideEliminarActividadEvent?.Invoke(null, null);
 
         }
+        public static EventHandler? HideAgregarActViewEvent;
+        public static void HideAgregarActView()
+        {
+            HideAgregarActViewEvent?.Invoke(null, null);
+
+        }
+        public static EventHandler<int>? EliminarActividad;
+        public static void EliminarActividadById(int id)
+        {
+            EliminarActividad?.Invoke(null, id);
+
+        }
+        public static EventHandler<ActividadModel>? AgregarActividadEvent;
+        public static void AgregarActividad(ActividadModel aM)
+        {
+            AgregarActividadEvent?.Invoke(null, aM);
+
+        }
     }
 }

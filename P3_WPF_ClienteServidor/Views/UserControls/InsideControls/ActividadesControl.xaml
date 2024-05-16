@@ -45,7 +45,7 @@
                 <ComboBox Grid.Column="2" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
                 <Label Grid.Column="3" VerticalAlignment="Top">Estado</Label>
                 <ComboBox Grid.Column="3" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
-                <Button Grid.Column="4" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center">
+                <Button Grid.Column="4" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center" Command="{Binding VerAgregarCommand}">
                     Agregar actividad
                 </Button>
                 <!--<Label Grid.Column="3" VerticalAlignment="Top">Fecha Realización</Label>
@@ -164,6 +164,33 @@
             </UserControl.Style>
 
             <ContentControl Content="{StaticResource VerActividadDetalles}"></ContentControl>
+        </UserControl>
+        <UserControl Grid.RowSpan="2">
+
+            <UserControl.Resources>
+                <local:AgregarSolicitudControl x:Key="VerAgregar"></local:AgregarSolicitudControl>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#FFD2EADF"/>
+                    <Setter Property="FontFamily" Value="Andor.ttf"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </UserControl.Resources>
+            <UserControl.Style>
+                <Style TargetType="UserControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding MirarAgregar}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding MirarAgregar}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </UserControl.Style>
+
+            <ContentControl Content="{StaticResource VerAgregar}"></ContentControl>
         </UserControl>
     </Grid>
 </UserControl>

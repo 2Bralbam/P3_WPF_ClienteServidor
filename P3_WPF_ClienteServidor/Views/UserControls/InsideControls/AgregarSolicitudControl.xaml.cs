@@ -1,4 +1,5 @@
-﻿using System;
+﻿using P3_WPF_ClienteServidor.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,11 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
         public AgregarSolicitudControl()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            VMMessaging.HideAgregarActView();
         }
     }
 }
