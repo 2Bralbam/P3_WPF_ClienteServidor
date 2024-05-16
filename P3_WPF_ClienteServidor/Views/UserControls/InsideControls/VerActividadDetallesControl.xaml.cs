@@ -1,4 +1,6 @@
-﻿using System;
+﻿using P3_WPF_ClienteServidor.Models;
+using P3_WPF_ClienteServidor.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +25,21 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
         public VerActividadDetallesControl()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            VMMessaging.HideActividadDetallesView();
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            VMMessaging.ShowEditarActividad(VMMessaging.SelectedActividad);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            VMMessaging.ShowEliminarActividad(VMMessaging.SelectedActividad);
         }
     }
 }

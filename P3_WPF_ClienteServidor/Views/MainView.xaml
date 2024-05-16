@@ -7,8 +7,8 @@
         xmlns:ControlViews="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls"
         xmlns:vm="clr-namespace:P3_WPF_ClienteServidor.ViewModels"
         mc:Ignorable="d"
-        MinHeight="400"
-        MinWidth="950"
+        MinHeight="560"
+        MinWidth="1130"
         Title="Registro de actividades" Height="450" Width="950">
     <Window.DataContext>
         <vm:MainViewModel></vm:MainViewModel>

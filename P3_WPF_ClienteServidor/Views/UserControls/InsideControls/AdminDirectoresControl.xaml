@@ -4,14 +4,30 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls.InsideControls"
+             xmlns:InsideVM="clr-namespace:P3_WPF_ClienteServidor.ViewModels.InsideViewModels"
+             xmlns:InsideControls="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls.InsideControls"
              mc:Ignorable="d" 
              x:Name="View"
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <InsideVM:AdminDirectoresVM></InsideVM:AdminDirectoresVM>
+    </UserControl.DataContext>
+    <UserControl.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="Black"/>
+            <Setter Property="FontFamily" Value="Andor.ttf"/>
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="FontWeight" Value="DemiBold"/>
+        </Style>
+    </UserControl.Resources>
     <Grid>
         <!--<Label>AdminActividadesControl</Label>-->
         <Grid.RowDefinitions>
             <RowDefinition Height="60"/>
             <RowDefinition Height="*"/>
+            
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -51,16 +67,80 @@
                 </Grid>
             </Grid>
         </Grid>
-        <ListView x:Name="ListView" Grid.Row="1">
-
+        <ListView x:Name="ListView" Grid.Row="1" ItemsSource="{Binding AdminDirectoresList}" Margin="10" MouseDoubleClick="ListView_MouseDoubleClick" SelectedItem="{Binding UserSelected}">
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="Background" Value="#FF0E2F20"/>
+                </Style>
+                <Style TargetType="ListView">
+                    <Setter Property="Background" Value="#23FFFFFF"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+            </ListView.Resources>
             <ListView.View>
                 <GridView>
-                    <GridViewColumn x:Name="Uno" Header="Nombre del usuario" DisplayMemberBinding="{Binding FechaCreacion}" />
-                    <GridViewColumn x:Name="Dos" Header="Id" DisplayMemberBinding="{Binding FechaRealizacion}" />
-                    <GridViewColumn x:Name="Tres" Header="Rol" DisplayMemberBinding="{Binding FechaActualizacion}" />
-                    <GridViewColumn x:Name="Cuatro" Header="Acciones"/>
+                    <GridViewColumn x:Name="Uno" Header="Nombre del usuario" DisplayMemberBinding="{Binding Username}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Username}" Foreground="Black"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="Dos" Header="Id" DisplayMemberBinding="{Binding Id}">
+                        
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Id}" Foreground="Black"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="Tres" Header="Rol" DisplayMemberBinding="{Binding Rol}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Rol}" Foreground="Black"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FF487148"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
+        <UserControl Grid.RowSpan="2">
+
+            <UserControl.Resources>
+                <InsideControls:VerDepDetallesControl x:Key="VerDepDetallesControl"></InsideControls:VerDepDetallesControl>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#FFD2EADF"/>
+                    <Setter Property="FontFamily" Value="Andor.ttf"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </UserControl.Resources>
+            <UserControl.Style>
+                <Style TargetType="UserControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Editing}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Editing}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </UserControl.Style>
+            
+            <ContentControl Content="{StaticResource VerDepDetallesControl}"></ContentControl>
+        </UserControl>
     </Grid>
 </UserControl>

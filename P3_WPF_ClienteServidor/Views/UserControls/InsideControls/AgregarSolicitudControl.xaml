@@ -1,0 +1,69 @@
+﻿<UserControl x:Class="P3_WPF_ClienteServidor.Views.UserControls.InsideControls.AgregarSolicitudControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls.InsideControls"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid Background="#FF080E0B">
+        <Grid.Style>
+            <Style TargetType="Grid">
+                <Setter Property="Background" Value="#000000bd"/>
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Deleting}" Value="True">
+                        <Setter Property="Background" Value="LightGray"/>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Grid.Style>
+        <Grid Width="360" HorizontalAlignment="Center" VerticalAlignment="Center" MaxHeight="720" MaxWidth="800">
+            <Grid.Style>
+                <Style TargetType="Grid">
+                    <Setter Property="Background" Value="#23686388"/>
+                </Style>
+            </Grid.Style>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="40"/>
+                <RowDefinition Height="*"/>
+                <RowDefinition Height="40"/>
+            </Grid.RowDefinitions>
+            <Label FontWeight="Bold" Grid.Row="0">Agregar actividad</Label>
+            <Grid Grid.Row="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="20"/>
+                    <RowDefinition Height="25"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <Label Grid.Row="0">Titulo</Label>
+                <TextBox Margin="30,0,30,0" Grid.Row="1" Background="White" Text="{Binding Nombre}"/>
+                <Label Grid.Row="2">Descripcion</Label>
+                <TextBox Margin="30,0,30,0" Grid.Row="3" Background="White" Text="{Binding Correo}"/>
+                <Label Grid.Row="6">Foto</Label>
+                <StackPanel Grid.Row="7">
+                    
+                    <Image Width="150" Height="100"/>
+                    <Button Margin="5" Width="100">Elegir foto</Button>
+                </StackPanel>
+                <Label Grid.Row="4">Estado</Label>
+                <ComboBox Grid.Row="5" Margin="30,0,30,0">
+                    <ComboBoxItem>
+                        Publicado
+                    </ComboBoxItem>
+                </ComboBox>
+            </Grid>
+            <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
+                <Button Margin="10" Width="100">Confirmar</Button>
+                <Button Margin="10" Width="100">Cancelar</Button>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

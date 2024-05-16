@@ -37,7 +37,7 @@
             <Setter Property="Cursor" Value="Hand"/>
         </Style>
         <Style TargetType="ListView">
-            <Setter Property="Background" Value="#23686388"/>
+            <Setter Property="Background" Value="#23FFFFFF"/>
             <Setter Property="BorderBrush" Value="Transparent"/>
             <Setter Property="BorderThickness" Value="0"/>
         </Style>

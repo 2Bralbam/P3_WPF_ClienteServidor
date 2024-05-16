@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using P3_WPF_ClienteServidor.Models;
 using P3_WPF_ClienteServidor.Services;
 using System;
 using System.Collections.Generic;
@@ -12,6 +13,11 @@ namespace P3_WPF_ClienteServidor.ViewModels
     public class DirectorGeneralViewModel:INotifyPropertyChanged
     {
         public RelayCommand LogoutCommand { get; set; }
+        public string Username { get
+            {
+                return VMMessaging.UniqueName;
+            }
+        }
         public string _contenidoView;
         public string ContenidoView {
             get
@@ -37,6 +43,7 @@ namespace P3_WPF_ClienteServidor.ViewModels
         }
         public DirectorGeneralViewModel()
         {
+            
             _contenidoView = "AdmActividades";
             LogoutCommand = new RelayCommand(Logout);
             ActividadesCommand = new RelayCommand(Actividades);

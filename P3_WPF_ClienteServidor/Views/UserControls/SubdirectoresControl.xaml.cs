@@ -33,11 +33,11 @@ namespace P3_WPF_ClienteServidor.Views.UserControls
             this.Loaded += MainView_Loaded;
             this.Unloaded += ViewUnloaded;
             BtnActividades.Click += BtnActividades_Click;
-            BtnMiembros.Click += BtnMiembros_Click;
-            BtnJefes.Click += BtnJefes_Click;
+            //BtnMiembros.Click += BtnMiembros_Click;
+            //BtnJefes.Click += BtnJefes_Click;
             buttons.Add(BtnActividades);
-            buttons.Add(BtnMiembros);
-            buttons.Add(BtnJefes);
+            //buttons.Add(BtnMiembros);
+            //buttons.Add(BtnJefes);
             BrushConverter bc = new BrushConverter();
             SelectedColor = (Brush)bc.ConvertFrom(SelectedButtonColor);
             UnselectedColor = (Brush)bc.ConvertFrom(UnselectedButtonColor);

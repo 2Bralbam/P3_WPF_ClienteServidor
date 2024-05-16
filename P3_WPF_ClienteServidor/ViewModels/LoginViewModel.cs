@@ -10,22 +10,27 @@ using System.Threading.Tasks;
 using System.Windows.Controls;
 using System.Windows;
 using P3_WPF_ClienteServidor.Models;
+using Microsoft.IdentityModel.Tokens;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 
 namespace P3_WPF_ClienteServidor.ViewModels
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
-        
+
         public string? Username { get; set; }
         public string? Password { get; set; }
         private string? _errorMessages { get; set; }
-        public string? ErrorMessages {
+        public string? ErrorMessages
+        {
             get
             {
                 return _errorMessages;
             }
-            set {
+            set
+            {
                 _errorMessages = value;
                 OnPropertyChanged(nameof(ErrorMessages));
             }
@@ -36,50 +41,70 @@ namespace P3_WPF_ClienteServidor.ViewModels
         {
             LoginCommand = new RelayCommand(Login);
         }
-        
-        
+
+
         private async void Login()
         {
-            //ErrorMessages = string.Empty;
-            //if (string.IsNullOrWhiteSpace(Username) && string.IsNullOrWhiteSpace(Password))
-            //{
-            //    ErrorMessages = "Introduzca su correo y contraseña";
-            //    return;
-            //}
-            //if (string.IsNullOrWhiteSpace(Username))
-            //{
-            //    ErrorMessages = "Introduzca su correo\n";
-            //}
-            //if (string.IsNullOrWhiteSpace(Password))
-            //{
-            //    ErrorMessages = "Introduzca su contraseña";
-            //}
-            //if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
-            //{
-            //    ErrorMessages = string.Empty;
-            //    LoginModel loginModel = new()
-            //    {
-            //        email = Username,
-            //        password = Password
-            //    };
-            //    string? response = await authService.Login(loginModel);
-            //    if (response == null)
-            //    {
-            //        ErrorMessages = "No se inició sesión";
-            //        return;
-            //    }
-            //    else
-            //    {
-
-            //    }
-                VMMessaging.CambiarVista(Username);
-            //}
+            ErrorMessages = string.Empty;
+            if (string.IsNullOrWhiteSpace(Username) && string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessages = "Introduzca su correo y contraseña";
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                ErrorMessages = "Introduzca su correo\n";
+            }
+            if (string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessages = "Introduzca su contraseña";
+            }
+            if (!string.IsNullOrWhiteSpace(Username) && !string.IsNullOrWhiteSpace(Password))
+            {
+                ErrorMessages = string.Empty;
+                LoginModel loginModel = new()
+                {
+                    email = Username,
+                    password = Password
+                };
+                string? response = await authService.Login(loginModel);
+                response = response?.Replace("\"", "");
+                ClaimsPrincipal? claimsPrincipal = ValidateToken(response);
+                if (claimsPrincipal != null && !string.IsNullOrEmpty(response))
+                {
+                    VMMessaging.UniqueName = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
+                    VMMessaging.IdUsuario = int.Parse(claimsPrincipal.FindFirst("Id")?.Value);
+                    VMMessaging.IdSuperior = int.Parse(claimsPrincipal.FindFirst("idSuperior")?.Value);
+                    VMMessaging.TokenJWT = response;
+                    VMMessaging.CambiarVista("DirectorGeneralView");
+                }
+                else
+                {
+                    ErrorMessages = "No se inició sesión";
+                    return;
+                }
+                
+            }
 
         }
         public void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            
+
         }
+        public static ClaimsPrincipal ValidateToken(string jwtToken)
+        {
+            var validationParameters = new TokenValidationParameters
+            {
+                ValidateLifetime = true,
+                ValidAudience = "ActividadesApp",
+                ValidIssuer = "ApiActividades",
+                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("PROGRAMACIONCLIENTESERVIDOR_2024OPORDIOS"))
+            };
+
+            SecurityToken validatedToken;
+            return new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
+        }
+
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

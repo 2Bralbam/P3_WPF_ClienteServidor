@@ -4,10 +4,13 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls.InsideControls"
+             xmlns:InsideVM="clr-namespace:P3_WPF_ClienteServidor.ViewModels.InsideViewModels"
              mc:Ignorable="d" 
              x:Name="View"
              d:DesignHeight="450" d:DesignWidth="800">
-    
+    <UserControl.DataContext>
+        <InsideVM:ActividadesViewModel></InsideVM:ActividadesViewModel>
+    </UserControl.DataContext>
     <Grid>
         <!--<Label>AdminActividadesControl</Label>-->
         <Grid.RowDefinitions>
@@ -21,7 +24,7 @@
             </Grid.ColumnDefinitions>
 
             <Grid.RowDefinitions>
-                <RowDefinition Height="1.5"/>
+                <RowDefinition Height="2"/>
                 <RowDefinition Height="*"/>
             </Grid.RowDefinitions>
             <Rectangle Grid.Row="0" Fill="Black" Opacity=".6"/>
@@ -31,7 +34,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Label Grid.Column="0" VerticalAlignment="Top">Departamento</Label>
@@ -40,6 +43,11 @@
                 <ComboBox Grid.Column="1" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
                 <Label Grid.Column="2" VerticalAlignment="Top">Fecha Actualización</Label>
                 <ComboBox Grid.Column="2" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <Label Grid.Column="3" VerticalAlignment="Top">Estado</Label>
+                <ComboBox Grid.Column="3" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
+                <Button Grid.Column="4" Padding="5" VerticalAlignment="Center" HorizontalAlignment="Center" VerticalContentAlignment="Center">
+                    Agregar actividad
+                </Button>
                 <!--<Label Grid.Column="3" VerticalAlignment="Top">Fecha Realización</Label>
                 <ComboBox Grid.Column="3" VerticalAlignment="Center" Margin="10,10,10,0"></ComboBox>
                 <Label Grid.Column="4" VerticalAlignment="Top">Estado</Label>
@@ -58,17 +66,104 @@
                 </Grid>
             </Grid>
         </Grid>
-        <ListView x:Name="ListView" Grid.Row="1">
-            
+        <ListView x:Name="ListView" Grid.Row="1" Margin="10" ItemsSource="{Binding ActividadesList}" SelectedItem="{Binding ActividadSelected}" MouseDoubleClick="ListView_MouseDoubleClick">
+            <ListView.Resources>
+                <Style TargetType="{x:Type GridViewColumnHeader}">
+                    <Setter Property="Background" Value="#FF0E2F20"/>
+                </Style>
+                <Style TargetType="ListView">
+                    <Setter Property="Background" Value="#23FFFFFF"/>
+                    <Setter Property="BorderBrush" Value="Transparent"/>
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Setter Property="Foreground" Value="Black"/>
+                </Style>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="Black"/>
+                    <Setter Property="FontFamily" Value="Andor.ttf"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                    <Setter Property="FontWeight" Value="DemiBold"/>
+                </Style>
+            </ListView.Resources>
             <ListView.View>
-                <GridView>
-                    <GridViewColumn x:Name="Uno" Header="Nombre" DisplayMemberBinding="{Binding Nombre}"/>
-                    <GridViewColumn x:Name="Dos" Header="Fecha de Creación" DisplayMemberBinding="{Binding FechaCreacion}" />
-                    <GridViewColumn x:Name="Tres" Header="Fecha de Realización" DisplayMemberBinding="{Binding FechaRealizacion}" />
+                <!--<GridView>
+                    <GridViewColumn x:Name="Uno" Header="Nombre" DisplayMemberBinding="{Binding Titulo}"/>
+                    <GridViewColumn x:Name="Dos" Header="Fecha de Creación" DisplayMemberBinding="{Binding fechaCreacion}" />
+                    <GridViewColumn x:Name="Tres" Header="Estado" DisplayMemberBinding="{Binding Estado}" />
                     <GridViewColumn x:Name="Cuatro" Header="Fecha de Actualización" DisplayMemberBinding="{Binding FechaActualizacion}" />
-                    <!--<GridViewColumn x:Name="Cuatro" Header="Estado del Ítem" DisplayMemberBinding="{Binding EstadoItem}" />-->
+                    
+                    --><!--<GridViewColumn x:Name="Cuatro" Header="Estado del Ítem" DisplayMemberBinding="{Binding EstadoItem}" />--><!--
+                </GridView>-->
+                <GridView>
+                    <GridViewColumn x:Name="Uno" Header="Titulo" DisplayMemberBinding="{Binding Titulo}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Titulo}" Foreground="Black"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="Dos" Header="Fecha Creacion" DisplayMemberBinding="{Binding fechaCreacion}">
+
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding fechaCreacion}" Foreground="Black"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="Tres" Header="Fecha Actualización" DisplayMemberBinding="{Binding fechaActualizacion}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Estado}" Foreground="Black"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    <GridViewColumn x:Name="Cuatro" Header="Estado" DisplayMemberBinding="{Binding Estado}">
+                        <GridViewColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Estado}" Foreground="Black"/>
+                            </DataTemplate>
+                        </GridViewColumn.CellTemplate>
+                    </GridViewColumn>
+                    
                 </GridView>
             </ListView.View>
+            <ListView.ItemContainerStyle>
+                <Style TargetType="ListViewItem">
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="#FF487148"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </ListView.ItemContainerStyle>
         </ListView>
+        <UserControl Grid.RowSpan="2">
+
+            <UserControl.Resources>
+                <local:VerActividadDetallesControl x:Key="VerActividadDetalles"></local:VerActividadDetallesControl>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#FFD2EADF"/>
+                    <Setter Property="FontFamily" Value="Andor.ttf"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </UserControl.Resources>
+            <UserControl.Style>
+                <Style TargetType="UserControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding MirandoDetalles}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding MirandoDetalles}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </UserControl.Style>
+
+            <ContentControl Content="{StaticResource VerActividadDetalles}"></ContentControl>
+        </UserControl>
     </Grid>
 </UserControl>

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using P3_WPF_ClienteServidor.Models;
+using P3_WPF_ClienteServidor.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -33,7 +35,7 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
         private async Task ActividadesControl_SizeChanged(object sender, SizeChangedEventArgs e)
         {
             double Size = e.NewSize.Width;
-            double NewColumSize = Size / 4;
+            double NewColumSize = (Size / 4)-2;
             Uno.Width = NewColumSize;
             Dos.Width = NewColumSize;
             Tres.Width = NewColumSize;
@@ -50,6 +52,11 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
         {
 
             View.BeginAnimation(OpacityProperty, new DoubleAnimation(1, TimeSpan.FromSeconds(.5)));
+        }
+
+        private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            VMMessaging.ShowActividad((ActividadModel)ListView.SelectedItem);
         }
     }
 }
