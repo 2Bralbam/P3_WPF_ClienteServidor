@@ -68,15 +68,31 @@ namespace P3_WPF_ClienteServidor.ViewModels
                     password = Password
                 };
                 string? response = await authService.Login(loginModel);
+                if (response == null)
+                {
+                    return;
+                }
                 response = response?.Replace("\"", "");
                 ClaimsPrincipal? claimsPrincipal = ValidateToken(response);
                 if (claimsPrincipal != null && !string.IsNullOrEmpty(response))
                 {
+                    VMMessaging.TokenJWT = response;
                     VMMessaging.UniqueName = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
                     VMMessaging.IdUsuario = int.Parse(claimsPrincipal.FindFirst("Id")?.Value);
-                    VMMessaging.IdSuperior = int.Parse(claimsPrincipal.FindFirst("idSuperior")?.Value);
-                    VMMessaging.TokenJWT = response;
+                    string? ROL = claimsPrincipal.FindFirst("idSuperior")?.Value;
+                    if (string.IsNullOrEmpty(ROL))
+                    {
+                        string ADMIN = "TRUE";
+                    }
+                    else
+                    {
+                        VMMessaging.IdSuperior = int.Parse(claimsPrincipal.FindFirst("idSuperior")?.Value);
+                    }
+                    
+                    
                     VMMessaging.CambiarVista("DirectorGeneralView");
+                    VMMessaging.Login();
+
                 }
                 else
                 {
@@ -93,16 +109,24 @@ namespace P3_WPF_ClienteServidor.ViewModels
         }
         public static ClaimsPrincipal ValidateToken(string jwtToken)
         {
-            var validationParameters = new TokenValidationParameters
+            try
             {
-                ValidateLifetime = true,
-                ValidAudience = "ActividadesApp",
-                ValidIssuer = "ApiActividades",
-                IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("PROGRAMACIONCLIENTESERVIDOR_2024OPORDIOS"))
-            };
+                var validationParameters = new TokenValidationParameters
+                {
+                    ValidateLifetime = true,
+                    ValidAudience = "ActividadesApp",
+                    ValidIssuer = "ApiActividades",
+                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("PROGRAMACIONCLIENTESERVIDOR_2024OPORDIOS"))
+                };
 
-            SecurityToken validatedToken;
-            return new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
+                SecurityToken validatedToken;
+                return new JwtSecurityTokenHandler().ValidateToken(jwtToken, validationParameters, out validatedToken);
+            }
+            catch
+            {
+                return null;
+            }
+            
         }
 
         protected virtual void OnPropertyChanged(string propertyName)

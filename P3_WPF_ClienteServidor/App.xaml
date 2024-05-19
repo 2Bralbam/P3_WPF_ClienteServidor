@@ -19,6 +19,7 @@
             <Setter Property="VerticalAlignment" Value="Center"/>
             <Setter Property="HorizontalAlignment" Value="Center"/>
         </Style>
+        
         <Style TargetType="TextBox">
             <Setter Property="Background" Value="#689D99"/>
         </Style>

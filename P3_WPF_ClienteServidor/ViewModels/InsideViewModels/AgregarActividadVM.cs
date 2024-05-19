@@ -46,7 +46,7 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
             {
                 Titulo = actividad.titulo,
                 Descripcion = actividad.descripcion,
-                FechaRealizacion = actividad.fechaRealizacion
+                FechaRealizacion = DateOnly.Parse(DateTime.Now.ToString("yyyy-MM-dd"))
             };
             VMMessaging.AgregarActividad(actividadModel);
         }

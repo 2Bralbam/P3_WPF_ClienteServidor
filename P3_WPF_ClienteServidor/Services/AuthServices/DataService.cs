@@ -22,25 +22,29 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
             
 
         }
-        public async Task GetData()
+        public async Task<List<ActividadModel>?> GetData()
         {
             
             try
             {
+                client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
                 var response = await client.GetAsync("Actividad");
                 
                 var result = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {
-
+                    var data = JsonConvert.DeserializeObject<List<ActividadModel>>(result);
+                    return data;
                 }
                 else
                 {
+                    return null;
                 }
             }
             catch (Exception e)
             {
+                return null;
             }
 
         }
@@ -49,6 +53,7 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
 
             try
             {
+                client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
                 var response = await client.DeleteAsync($"Actividad/Eliminar/{Id}");
 
@@ -70,6 +75,7 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
         {
             try
             {
+                client.DefaultRequestHeaders.Clear();
                 
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
                 client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));

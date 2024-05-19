@@ -13,6 +13,9 @@
     <Window.DataContext>
         <vm:MainViewModel></vm:MainViewModel>
     </Window.DataContext>
+    <Window.Resources>
+        
+    </Window.Resources>
     <Window.Style>
         <Style TargetType="Window">
             <Setter Property="Background" Value="#003430"/>

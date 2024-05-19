@@ -118,5 +118,11 @@ namespace P3_WPF_ClienteServidor.Services
             AgregarActividadEvent?.Invoke(null, aM);
 
         }
+        public static EventHandler? LoginEvent;
+        public static void Login()
+        {
+            LoginEvent?.Invoke(null, null);
+
+        }
     }
 }

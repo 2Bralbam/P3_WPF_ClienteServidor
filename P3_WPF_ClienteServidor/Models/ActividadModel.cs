@@ -8,14 +8,13 @@ namespace P3_WPF_ClienteServidor.Models
 {
     public class ActividadModel
     {
-        public string Titulo { get; set; } = null!;
-        public string Descripcion { get; set; } = null!;
-        public string FechaRealizacion { get; set; } = null!;
-        public DateTime fechaCreacion { get; set; } 
-        public DateTime fechaActualizacion { get; set; } 
-        public int Id { get; set; } 
-        public int IdUser { get; set; } 
-        public int IdDep { get; set; } 
-        public int Estado { get; set; }
+        public int Id { get; set; }
+        public string Titulo { get; set; } = string.Empty;
+        public string Descripcion { get; set; } = string.Empty;
+        public string? Imagen { get; set; }
+        public DateOnly? FechaRealizacion { get; set; }
+        public string NombreDepartamento { get; set; } = string.Empty;
+        public int? Estado { get; set; }
+        public string EstadoString { get; set; } = string.Empty;
     }
 }
