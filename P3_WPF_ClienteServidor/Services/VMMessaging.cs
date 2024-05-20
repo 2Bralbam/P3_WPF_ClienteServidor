@@ -27,7 +27,7 @@ namespace P3_WPF_ClienteServidor.Services
         {
             if (D == null)
             {
-                throw new ArgumentNullException(nameof(D));
+
             }
             SelectedUser = D;
             StartingEditing?.Invoke(null, D);
@@ -143,6 +143,18 @@ namespace P3_WPF_ClienteServidor.Services
             EditandoDepartamentoEvent?.Invoke(null, d);
 
         }
+        public static EventHandler<DirectoresModel>? AgregarDepartamentoEvent;
+        public static void AgregarDepartamento(DirectoresModel d)
+        {
+            AgregarDepartamentoEvent?.Invoke(null, d);
+
+        }
+        public static EventHandler? AgregandoDepartamentoEvent;
+        public static void AgregandoDepartamento()
+        {
+            AgregandoDepartamentoEvent?.Invoke(null, null);
+
+        }
         public static EventHandler<DirectoresModel>? EliminarDepartamentoEvent;
         public static void EliminarDepartamento(DirectoresModel d)
         {
@@ -153,6 +165,18 @@ namespace P3_WPF_ClienteServidor.Services
         public static void PublicarActividad(int id)
         {
             PublicarActividadEvent?.Invoke(null, id);
+
+        }
+        public static EventHandler? HideAgregarDepartamentoEvent;
+        public static void HideAgregarDepartamento()
+        {
+            HideAgregarDepartamentoEvent?.Invoke(null, null);
+
+        }
+        public static EventHandler? CheckUserAdminEvent;
+        public static void CheckUserAdmin()
+        {
+            CheckUserAdminEvent?.Invoke(null, null);
 
         }
     } 

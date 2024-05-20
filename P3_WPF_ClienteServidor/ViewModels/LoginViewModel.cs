@@ -97,8 +97,8 @@ namespace P3_WPF_ClienteServidor.ViewModels
                     {
                         VMMessaging.IdSuperior = int.Parse(claimsPrincipal.FindFirst("idSuperior")?.Value);
                     }
-                    
-                    
+
+                    VMMessaging.CheckUserAdmin();
                     VMMessaging.CambiarVista("DirectorGeneralView");
                     VMMessaging.Login();
 

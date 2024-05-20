@@ -79,6 +79,8 @@ namespace P3_WPF_ClienteServidor.ViewModels
 
         private void Directores()
         {
+            VMMessaging.DescargarDepartamentos();
+            VMMessaging.CheckUserAdmin();
             if (ContenidoView != "AdmDirectores")
             {
                 ContenidoView = "AdmDirectores";

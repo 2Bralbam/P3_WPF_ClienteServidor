@@ -39,6 +39,11 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
             Uno.Width = NewColumSize;
             Dos.Width = NewColumSize;
             Tres.Width = NewColumSize;
+            VMMessaging.CheckUserAdminEvent += CheckAdminUser;
+        }
+
+        private void CheckAdminUser(object? sender, EventArgs e)
+        {
 
         }
 

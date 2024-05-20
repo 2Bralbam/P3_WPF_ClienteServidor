@@ -98,7 +98,11 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
             OnPropertyChanged(nameof(Editando));
             OnPropertyChanged(nameof(Eliminando));
         }
-
+        private void ClearFoto()
+        {
+            DisplayedImage = new BitmapImage();
+            OnPropertyChanged(nameof(DisplayedImage));
+        }
         private async void ShowActividad(object? sender, ActividadModel e)
         {
             string ActImg = await dataservice.GetImagen(e.Id);

@@ -53,7 +53,27 @@
                         Orden alfabetico
                     </ComboBoxItem>
                 </ComboBox>-->
-                <Button Margin="10">Agregar departamento</Button>
+                
+                <Button Content="Agregar Departamento" Margin="10" Command="{Binding AgregarDepartamentoCommand}">
+                    <Button.Style>
+                        <Style TargetType="Button">
+                            <Setter Property="Background" Value="#689D99"/>
+                            <Setter Property="Foreground" Value="White"/>
+                            <Setter Property="FontSize" Value="16"/>
+                            <Setter Property="VerticalAlignment" Value="Center"/>
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Setter Property="HorizontalAlignment" Value="Center"/>
+                            <Setter Property="Cursor" Value="Hand"/>
+                            <Setter Property="Visibility" Value="Visible"/>
+                            <Style.Triggers>
+                                <DataTrigger Binding="{Binding IsAdmin}" Value="True">
+                                    <Setter Property="Visibility" Value="Collapsed"/>
+                                </DataTrigger>
+                            </Style.Triggers>
+                        </Style>
+                    </Button.Style>
+                </Button>
+
                 <Grid Grid.Column="10">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="*"/>
@@ -148,8 +168,35 @@
                     </Style.Triggers>
                 </Style>
             </UserControl.Style>
-            
+
             <ContentControl Content="{StaticResource VerDepDetallesControl}"></ContentControl>
+        </UserControl>
+        <UserControl Grid.RowSpan="2">
+
+            <UserControl.Resources>
+                <InsideControls:AgregarDepartamentoControl x:Key="AgregandoDepartamentoControl"></InsideControls:AgregarDepartamentoControl>
+                <Style TargetType="TextBlock">
+                    <Setter Property="Foreground" Value="#FFD2EADF"/>
+                    <Setter Property="FontFamily" Value="Andor.ttf"/>
+                    <Setter Property="FontSize" Value="16"/>
+                    <Setter Property="VerticalAlignment" Value="Center"/>
+                    <Setter Property="HorizontalAlignment" Value="Center"/>
+                </Style>
+            </UserControl.Resources>
+            <UserControl.Style>
+                <Style TargetType="UserControl">
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding AgregandoDepartamento}" Value="True">
+                            <Setter Property="Visibility" Value="Visible"/>
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding AgregandoDepartamento}" Value="False">
+                            <Setter Property="Visibility" Value="Collapsed"/>
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </UserControl.Style>
+
+            <ContentControl Content="{StaticResource AgregandoDepartamentoControl}"></ContentControl>
         </UserControl>
     </Grid>
 </UserControl>
