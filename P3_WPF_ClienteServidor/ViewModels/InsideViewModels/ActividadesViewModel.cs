@@ -43,6 +43,7 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
         }
         public ActividadesViewModel()
         {
+            
             VerAgregarCommand = new RelayCommand(VerAgregar);
             FiltrarCommand = new RelayCommand(Filtrar);
             LimpiarFiltroCommand = new RelayCommand(LimpiarFiltro);
@@ -51,8 +52,19 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
             VMMessaging.HideAgregarActViewEvent += HideAgregarActividad;
             VMMessaging.EliminarActividad += EliminarDeLaLista;
             VMMessaging.AgregarActividadEvent += AgregarActividad;
+            VMMessaging.EditActividadEvent += async (object? sender, ActividadModel e) => { await EditarActividadMethod(sender, e); };
             VMMessaging.LoginEvent += async (object? sender, EventArgs e) => { await DescargarDatos(sender,e); };
 
+        }
+
+        
+
+        private async Task EditarActividadMethod(object? sender, ActividadModel e)
+        {
+            Application.Current.Dispatcher.Invoke(async () =>
+            {
+                await UpdateData();
+            });
         }
 
         private void AgregarActividad(object? sender, ActividadModel e)
@@ -323,7 +335,9 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
         {
             MirandoDetalles = "False";
             MirarAgregar = "False";
+            OnPropertyChanged(nameof(ActividadesList));
             OnPropertyChanged(nameof(MirandoDetalles));
+            
         }
 
         private void ShowActividad(object? sender, ActividadModel e)

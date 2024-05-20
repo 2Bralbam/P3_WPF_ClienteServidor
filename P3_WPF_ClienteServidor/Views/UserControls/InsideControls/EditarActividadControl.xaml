@@ -4,10 +4,14 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls.InsideControls"
+             xmlns:InsideVM="clr-namespace:P3_WPF_ClienteServidor.ViewModels.InsideViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800"
              Background="#000000bd"
              >
+    <UserControl.DataContext>
+        <InsideVM:EditarViewModel></InsideVM:EditarViewModel>
+    </UserControl.DataContext>
     <Grid Background="#FF080E0B">
         <Grid.Style>
             <Style TargetType="Grid">
@@ -35,6 +39,7 @@
             </Grid.RowDefinitions>
             <Label FontWeight="Bold" Grid.Row="0">Editar actividad</Label>
             <Grid Grid.Row="1">
+                
                 <Grid.RowDefinitions>
                     <RowDefinition Height="25"/>
                     <RowDefinition Height="20"/>
@@ -46,26 +51,31 @@
                     <RowDefinition Height="auto"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0">Titulo</Label>
-                <TextBox Margin="30,0,30,0" Grid.Row="1" Background="White" Text="{Binding Nombre}"/>
+                <TextBox Margin="30,0,30,0" Grid.Row="1" Background="White" Text="{Binding EditedAct.Titulo}"/>
                 <Label Grid.Row="2">Descripcion</Label>
-                <TextBox Margin="30,0,30,0" Grid.Row="3" Background="White" Text="{Binding Correo}"/>
+                <TextBox Margin="30,0,30,0" Grid.Row="3" Background="White" Text="{Binding EditedAct.Descripcion}"/>
                 <Label Grid.Row="6">Foto</Label>
                 <StackPanel Grid.Row="7">
 
-                    <Image Width="150" Height="100"/>
-                    <Button Margin="5" Width="100">Elegir foto</Button>
+                    <Image Width="200" Height="100" Source="{Binding FotoPath}"/>
+                    <Button Margin="5" Width="100" Command="{Binding SelectFotoCommand}">Elegir foto</Button>
                 </StackPanel>
                 <Label Grid.Row="4">Estado</Label>
-                <ComboBox Grid.Row="5" Margin="30,0,30,0">
-                    
+                <ComboBox Grid.Row="5" Margin="30,0,30,0" x:Name="Estados">
                     <ComboBoxItem Foreground="Black">
                         Publicado
+                    </ComboBoxItem>
+                    <ComboBoxItem Foreground="Black">
+                        Eliminar
+                    </ComboBoxItem>
+                    <ComboBoxItem Foreground="Black">
+                        Borrador
                     </ComboBoxItem>
                 </ComboBox>
             </Grid>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Button Margin="10" Width="100">Confirmar</Button>
-                <Button Margin="10" Width="100" Click="Button_Click">Cancelar</Button>
+                <Button Margin="10" Width="100" Command="{Binding ConfirmarEditarCommand}">Confirmar</Button>
+                <Button Margin="10" Width="100" Command="{Binding CancelarEditarCommand}">Cancelar</Button>
             </StackPanel>
         </Grid>
     </Grid>

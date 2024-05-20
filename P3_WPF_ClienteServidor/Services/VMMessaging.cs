@@ -124,5 +124,11 @@ namespace P3_WPF_ClienteServidor.Services
             LoginEvent?.Invoke(null, null);
 
         }
+        public static EventHandler<ActividadModel>? EditActividadEvent;
+        public static void EditActividad(ActividadModel aM)
+        {
+            EditActividadEvent?.Invoke(null, aM);
+
+        }
     }
 }

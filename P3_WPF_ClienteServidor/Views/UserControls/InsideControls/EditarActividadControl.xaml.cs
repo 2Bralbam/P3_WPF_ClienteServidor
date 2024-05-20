@@ -24,11 +24,13 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
         public EditarActividadControl()
         {
             InitializeComponent();
+            Estados.Foreground = Brushes.Black;
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             VMMessaging.HideEditarACtividad();
+
         }
     }
 }

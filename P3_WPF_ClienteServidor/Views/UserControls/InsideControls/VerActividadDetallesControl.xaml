@@ -54,6 +54,7 @@
                 <Label FontWeight="Bold">Descripcion:</Label>
                 <TextBlock TextWrapping="Wrap" Text="{Binding Actividad.Descripcion}" Height="40">
                 </TextBlock>
+                
             </StackPanel>
             <Grid Grid.Row="2">
                 <Grid.RowDefinitions>
@@ -62,7 +63,7 @@
                     <RowDefinition Height="50"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0" VerticalAlignment="bottom" FontWeight="Bold">Imagen:</Label>
-                <Image Grid.Row="1" MinWidth="150" MinHeight="100" VerticalAlignment="Center" Source="https://cdn.papershift.com/20221215043821/Inspeccion-de-trabajo-scaled.jpg">
+                <Image Grid.Row="1" MinWidth="150" MinHeight="100" VerticalAlignment="Center" Source="{Binding DisplayedImage}">
 
                 </Image>
                 <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
@@ -75,6 +76,7 @@
                     <Button Grid.Column="0" Width="100" Height="30" Margin="10" Click="Button_Click">
                         Volver
                     </Button>
+                    <Button Width="100" Height="30" Margin="10" Command="{Binding PublicarCommand}">Publicar</Button>
                 </StackPanel>
             </Grid>
         </Grid>
