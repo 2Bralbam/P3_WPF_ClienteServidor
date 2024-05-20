@@ -50,7 +50,7 @@ namespace P3_WPF_ClienteServidor.Views.UserControls
         {
             CheckButtons(sender);
         }
-        private async void CheckButtons(object sender)
+        private void CheckButtons(object sender)
         {
             if (sender == null)
             {

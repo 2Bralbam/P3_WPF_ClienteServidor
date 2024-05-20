@@ -56,8 +56,12 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
         private void ListView_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
             //VMMessaging.EditingUser();
-            DirectoresModel SelectedUser = (DirectoresModel)ListView.SelectedItem;
-            VMMessaging.EditingUser(SelectedUser);
+            if(VMMessaging.IdSuperior == 0)
+            {
+                DirectoresModel SelectedUser = (DirectoresModel)ListView.SelectedItem;
+                VMMessaging.EditingUser(SelectedUser);
+            }
+            
         }
     }
 }

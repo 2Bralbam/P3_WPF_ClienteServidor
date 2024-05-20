@@ -83,6 +83,7 @@ namespace P3_WPF_ClienteServidor.ViewModels
                     if (string.IsNullOrEmpty(ROL))
                     {
                         string ADMIN = "TRUE";
+                        VMMessaging.IdSuperior = 0;
                     }
                     else
                     {

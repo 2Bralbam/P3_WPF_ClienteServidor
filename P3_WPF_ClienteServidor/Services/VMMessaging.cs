@@ -9,6 +9,7 @@ namespace P3_WPF_ClienteServidor.Services
 {
     public static class VMMessaging
     {
+        public static List<DirectoresModel> ListaDeDepartamentos { get; set; }
         public static DirectoresModel? SelectedUser { get; set; }
         public static ActividadModel? SelectedActividad { get; set; }
         public static string UniqueName { get; set; } = null!;
@@ -130,5 +131,23 @@ namespace P3_WPF_ClienteServidor.Services
             EditActividadEvent?.Invoke(null, aM);
 
         }
-    }
+        public static EventHandler? DescargarDepartamentosEvent;
+        public static void DescargarDepartamentos()
+        {
+            DescargarDepartamentosEvent?.Invoke(null, null);
+
+        }
+        public static EventHandler<DirectoresModel>? EditandoDepartamentoEvent;
+        public static void EditandoDepartamento(DirectoresModel d)
+        {
+            EditandoDepartamentoEvent?.Invoke(null, d);
+
+        }
+        public static EventHandler<DirectoresModel>? EliminarDepartamentoEvent;
+        public static void EliminarDepartamento(DirectoresModel d)
+        {
+            EliminarDepartamentoEvent?.Invoke(null, d);
+
+        }
+    } 
 }

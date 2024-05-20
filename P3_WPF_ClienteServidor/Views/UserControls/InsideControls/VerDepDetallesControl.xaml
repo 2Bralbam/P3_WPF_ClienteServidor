@@ -54,11 +54,11 @@
             </Grid.RowDefinitions>
             <StackPanel Grid.Row="0">
                 <Label x:Name="IdObject" Visibility="Hidden" Content="{Binding SelectedUser.Id}"></Label>
-                <Label>Nombre:</Label>
+                <Label FontWeight="Bold">Nombre:</Label>
                 <Label Content="{Binding SelectedUser.Username}" Margin="30" x:Name="TitleObject"></Label>
             </StackPanel>
             <StackPanel Grid.Row="1">
-                <Label>Rol:</Label>
+                <Label FontWeight="Bold">Rol:</Label>
                 <TextBlock TextWrapping="Wrap" Text="{Binding SelectedUser.Rol}" Margin="30">
                 </TextBlock>
             </StackPanel>

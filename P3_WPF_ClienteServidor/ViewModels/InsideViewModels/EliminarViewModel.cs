@@ -36,16 +36,27 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
 
         private void ConfirmarEliminacionMethod()
         {
-            if(ActivdadDepartamento == "Departamento")
+            try
             {
-                VMMessaging.ExitElim();
+                if (ActivdadDepartamento == "Departamento")
+                {
+                    //_dataService.EliminarDepartamento(IdObject);
+                    
+                    DirectoresModel departamento = new DirectoresModel() { Id = IdObject.ToString() };
+                    VMMessaging.EliminarDepartamento(departamento);
+                    VMMessaging.ExitElim();
+                }
+                else
+                {
+                    _ = _dataService.EliminarActividadById(Actividad.Id);
+                    VMMessaging.EliminarActividadById(Actividad.Id);
+                    VMMessaging.HideEliminarActividad();
+                    VMMessaging.HideActividadDetallesView();
+                }
             }
-            else
+            catch
             {
-                _ = _dataService.EliminarActividadById(Actividad.Id);
-                VMMessaging.EliminarActividadById(Actividad.Id);
-                VMMessaging.HideEliminarActividad();
-                VMMessaging.HideActividadDetallesView();
+
             }
         }
 

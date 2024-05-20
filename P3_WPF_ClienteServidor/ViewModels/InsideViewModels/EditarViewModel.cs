@@ -20,7 +20,7 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
         public ActividadModel EditedAct { get; set; } = new ActividadModel();
         public ActividadModel Actividad { get; set; } = new ActividadModel();
         public string FotoPath { get; set; } = string.Empty;
-        public event PropertyChangedEventHandler PropertyChanged;
+        public event PropertyChangedEventHandler? PropertyChanged;
         public ICommand ConfirmarEditarCommand { get; set; }
         public ICommand CancelarEditarCommand { get; set; }
         public ICommand SelectFotoCommand { get; set; }

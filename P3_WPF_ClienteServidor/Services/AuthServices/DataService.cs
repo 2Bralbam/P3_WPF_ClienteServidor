@@ -172,5 +172,93 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
                 return null;
             }
         }
+        public async Task<IEnumerable<DepartamentoDTO>> GetDepartamentos()
+        {
+            try
+            {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
+                var response = await client.GetAsync("Departamento");
+                var result = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    var data = JsonConvert.DeserializeObject<IEnumerable<DepartamentoDTO>>(result);
+                    return data;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            catch (Exception e)
+            {
+                return null;
+            }
+        }
+        public async Task EditarDepartamento(DirectoresModel d)
+        {
+            try
+            {
+                DepartamentoDTO departamento = new DepartamentoDTO()
+                {
+                    Id = int.Parse(d.Id),
+                    Nombre = d.Username,
+                    Correo = d.Rol,
+                    Contraseña = d.Password,
+                    IdSuperior = d.IdSuperior
+                };
+                client.DefaultRequestHeaders.Clear();
+
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
+                client.DefaultRequestHeaders.Accept.Add(new System.Net.Http.Headers.MediaTypeWithQualityHeaderValue("application/json"));
+                var json = JsonConvert.SerializeObject(d);
+                var content = new StringContent(json, Encoding.UTF8, "application/json");
+                var response = await client.PutAsync("Departamento/Editar", content);
+                var result = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    VMMessaging.DescargarDepartamentos();
+                    VMMessaging.ExitEditV();
+                    VMMessaging.ExitEditing();
+                    MessageBox.Show("Departamento editado");
+
+                }
+                else
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Error al guardar la actividad", error);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error al guardar la actividad", e.Message);
+            }
+        }
+        public async Task EliminarDepartamento(int IdDepartamento)
+        {
+            try
+            {
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
+                var response = await client.DeleteAsync($"Departamento/Eliminar/{IdDepartamento}");
+                var result = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    VMMessaging.DescargarDepartamentos();
+                    VMMessaging.ExitEditV();
+                    VMMessaging.ExitEditing();
+                    MessageBox.Show("Departamento eliminado");
+                }
+                else
+                {
+                    string error = await response.Content.ReadAsStringAsync();
+                    MessageBox.Show("Error al guardar la actividad", error);
+                }
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show("Error al guardar la actividad", e.Message);
+            }
+        }
     }
 }

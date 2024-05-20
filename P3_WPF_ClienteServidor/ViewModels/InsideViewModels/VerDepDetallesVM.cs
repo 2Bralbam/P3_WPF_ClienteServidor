@@ -30,6 +30,7 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
 
         private void Editing(object? sender, DirectoresModel e)
         {
+            VMMessaging.EditandoDepartamento(e);
             Editando = "True";
             Eliminando = "False";
             OnPropertyChanged(nameof(Editando));

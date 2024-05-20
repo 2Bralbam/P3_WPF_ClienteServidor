@@ -4,8 +4,12 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:P3_WPF_ClienteServidor.Views.UserControls.InsideControls"
+             xmlns:InsideVM ="clr-namespace:P3_WPF_ClienteServidor.ViewModels.InsideViewModels"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
+    <UserControl.DataContext>
+        <InsideVM:EditarDepartamentoViewModel></InsideVM:EditarDepartamentoViewModel>
+    </UserControl.DataContext>
     <Grid Background="#FF080E0B">
         <Grid.Style>
             <Style TargetType="Grid">
@@ -44,20 +48,22 @@
                     <RowDefinition Height="20"/>
                 </Grid.RowDefinitions>
                 <Label Grid.Row="0">Nombre</Label>
-                <TextBox Margin="30,0,30,0" Grid.Row="1" Background="White" Text="{Binding Nombre}"/>
+                <TextBox Margin="30,0,30,0" Grid.Row="1" Background="White" Text="{Binding EditingDepartamento.Username}"/>
                 <Label Grid.Row="2">Correo</Label>
-                <TextBox Margin="30,0,30,0" Grid.Row="3" Background="White" Text="{Binding Correo}"/>
+                <TextBox Margin="30,0,30,0" Grid.Row="3" Background="White" Text="{Binding EditingDepartamento.Rol}"/>
                 <Label Grid.Row="4">Contraseña</Label>
-                <PasswordBox Margin="30,0,30,0" Grid.Row="5" Background="White"/>
+                <TextBox Margin="30,0,30,0" Grid.Row="5" Background="White" Text="{Binding EditingDepartamento.Password}"/>
                 <Label Grid.Row="6">Superior</Label>
-                <ComboBox Grid.Row="7" Margin="30,0,30,0">
-                    <ComboBoxItem>
-                        Superior
-                    </ComboBoxItem>
+                <ComboBox Grid.Row="7" Margin="30,0,30,0" ItemsSource="{Binding Superiores}" SelectedItem="{Binding SuperiorSelected}">
+                    <ComboBox.ItemTemplate>
+                        <DataTemplate>
+                            <TextBlock Text="{Binding Username}" Foreground="Black"/>
+                        </DataTemplate>
+                    </ComboBox.ItemTemplate>
                 </ComboBox>
             </Grid>
             <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Bottom">
-                <Button Margin="10" Width="100">Confirmar</Button>
+                <Button Margin="10" Width="100" Command="{Binding ConfirmarEdicionCommand}">Confirmar</Button>
                 <Button Margin="10" Width="100" Click="Button_Click">Cancelar</Button>
             </StackPanel>
         </Grid>
