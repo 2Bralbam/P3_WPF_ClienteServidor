@@ -19,6 +19,7 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
     public class VerActividadDetallesVM : INotifyPropertyChanged
     {
         public ActividadModel Actividad { get; set; } = new();
+
         public string Eliminando { get; set; } = "False";
         public BitmapImage DisplayedImage { get; set; }
         public string Editando { get; set; } = "False";
@@ -40,17 +41,26 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
         }
         private async Task PublicarActividad()
         {
-            if (Actividad.Estado == 1)
+            try
             {
-                MessageBox.Show("La actividad ya está publicada");
+                if (Actividad.Estado == 1)
+                {
+                    MessageBox.Show("La actividad ya está publicada");
+                }
+                else
+                {
+                    VMMessaging.Login();
+                    await dataservice.PublicarActividad(Actividad.Id);
+                    Actividad.EstadoString = "Publicada";
+                    Actividad.Estado = 1;
+                    OnPropertyChanged(nameof(Actividad));
+                    MessageBox.Show("Actividad publicada");
+
+                }
+
             }
-            else
+            catch
             {
-                VMMessaging.Login();
-                await dataservice.PublicarActividad(Actividad.Id);
-                Actividad.EstadoString = "Publicada";
-                Actividad.Estado = 1;
-                OnPropertyChanged(nameof(Actividad));
 
             }
         }

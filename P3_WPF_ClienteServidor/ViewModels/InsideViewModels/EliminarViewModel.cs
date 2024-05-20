@@ -43,6 +43,11 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
                     //_dataService.EliminarDepartamento(IdObject);
                     
                     DirectoresModel departamento = new DirectoresModel() { Id = IdObject.ToString() };
+                    if(departamento.Id != null)
+                    {
+                        _dataService.EliminarDepartamento(int.Parse(departamento.Id));
+
+                    }
                     VMMessaging.EliminarDepartamento(departamento);
                     VMMessaging.ExitElim();
                 }

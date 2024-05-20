@@ -52,6 +52,7 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
             VMMessaging.HideAgregarActViewEvent += HideAgregarActividad;
             VMMessaging.EliminarActividad += EliminarDeLaLista;
             VMMessaging.AgregarActividadEvent += AgregarActividad;
+            VMMessaging.PublicarActividadEvent+= async (object? sender, int e) => { await UpdateData(); OnPropertyChanged(""); };
             VMMessaging.EditActividadEvent += async (object? sender, ActividadModel e) => { await EditarActividadMethod(sender, e); };
             VMMessaging.LoginEvent += async (object? sender, EventArgs e) => { await DescargarDatos(sender,e); };
 

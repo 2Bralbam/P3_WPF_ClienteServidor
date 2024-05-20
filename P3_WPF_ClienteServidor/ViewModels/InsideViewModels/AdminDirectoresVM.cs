@@ -51,16 +51,34 @@ namespace P3_WPF_ClienteServidor.ViewModels.InsideViewModels
 
         private async Task DescargarDatosDepartamentos(object? sender, EventArgs e)
         {
-            IEnumerable<DepartamentoDTO> directores = await dataService.GetDepartamentos();
-            var data = directores.Select(x => new DirectoresModel
+            try
             {
-                Username = x.Nombre,
-                Id = x.Id.ToString(),
-                Rol = "Director"
-            }).ToList();
-            AdminDirectoresList.Clear();
-            AdminDirectoresList = new ObservableCollection<DirectoresModel>(data);
-            OnPropertyChanged(nameof(AdminDirectoresList));
+                IEnumerable<DepartamentoDTO> directores = await dataService.GetDepartamentos();
+                if(directores != null)
+                {
+                    var data = directores.Where(x=>x.Id != VMMessaging.IdUsuario).Select(x => new DirectoresModel
+                    {
+                        Username = x.Nombre,
+                        Id = x.Id.ToString(),
+                        Rol = "Director"
+                    }).ToList();
+                    AdminDirectoresList.Clear();
+                    AdminDirectoresList = new ObservableCollection<DirectoresModel>(data);
+                    OnPropertyChanged(nameof(AdminDirectoresList));
+
+                }
+                else
+                {
+                    AdminDirectoresList.Clear();
+                    OnPropertyChanged(nameof(AdminDirectoresList));
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
         public async Task DescargarDeps()

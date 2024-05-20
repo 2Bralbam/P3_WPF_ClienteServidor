@@ -75,19 +75,22 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
         {
             try
             {
-                //client.DefaultRequestHeaders.Clear();
-                //client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
-                //var response = await client.PutAsync($"Actividad/Publicar/{Id}");
+                client.DefaultRequestHeaders.Clear();
+                client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
+                HttpContent content = new StringContent("");
+                var response = await client.PutAsync($"Actividad/Publicar/{Id}",content);
 
-                //var result = await response.Content.ReadAsStringAsync();
-                //if (response.IsSuccessStatusCode)
-                //{
-                //    MessageBox.Show("Actividad publicada");
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Error al publicar la actividad");
-                //}
+                var result = await response.Content.ReadAsStringAsync();
+                if (response.IsSuccessStatusCode)
+                {
+                    VMMessaging.HideActividadDetallesView();
+                    VMMessaging.PublicarActividad(Id);
+                    MessageBox.Show("Actividad publicada");
+                }
+                else
+                {
+                    MessageBox.Show("Error al publicar la actividad");
+                }
             }
             catch (Exception e)
             {
@@ -240,7 +243,7 @@ namespace P3_WPF_ClienteServidor.Services.AuthServices
             {
                 client.DefaultRequestHeaders.Clear();
                 client.DefaultRequestHeaders.Add("Authorization", "Bearer " + VMMessaging.TokenJWT);
-                var response = await client.DeleteAsync($"Departamento/Eliminar/{IdDepartamento}");
+                var response = await client.DeleteAsync($"Departamento/Eliminar?id={IdDepartamento}");
                 var result = await response.Content.ReadAsStringAsync();
                 if (response.IsSuccessStatusCode)
                 {

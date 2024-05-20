@@ -76,6 +76,14 @@ namespace P3_WPF_ClienteServidor.ViewModels
                 ClaimsPrincipal? claimsPrincipal = ValidateToken(response);
                 if (claimsPrincipal != null && !string.IsNullOrEmpty(response))
                 {
+                    try
+                    {
+                        VMMessaging.DescargarDepartamentos();
+                    }
+                    catch
+                    {
+
+                    }
                     VMMessaging.TokenJWT = response;
                     VMMessaging.UniqueName = claimsPrincipal.FindFirst(ClaimTypes.Name)?.Value;
                     VMMessaging.IdUsuario = int.Parse(claimsPrincipal.FindFirst("Id")?.Value);

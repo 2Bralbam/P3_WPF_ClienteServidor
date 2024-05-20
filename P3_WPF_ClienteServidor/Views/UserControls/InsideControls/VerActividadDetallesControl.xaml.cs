@@ -25,6 +25,20 @@ namespace P3_WPF_ClienteServidor.Views.UserControls.InsideControls
         public VerActividadDetallesControl()
         {
             InitializeComponent();
+            this.GotFocus += VerActividadDetallesControl_GotFocus;
+        }
+
+        private void VerActividadDetallesControl_GotFocus(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+
+                publicarButton.Visibility = 1==VMMessaging.SelectedActividad.Estado?Visibility.Collapsed:Visibility.Visible;
+            }
+            catch
+            {
+
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

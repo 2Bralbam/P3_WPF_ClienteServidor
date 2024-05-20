@@ -76,7 +76,9 @@
                     <Button Grid.Column="0" Width="100" Height="30" Margin="10" Click="Button_Click">
                         Volver
                     </Button>
-                    <Button Width="100" Height="30" Margin="10" Command="{Binding PublicarCommand}">Publicar</Button>
+                    <Button Width="100" Height="30" Margin="10" Command="{Binding PublicarCommand}" x:Name="publicarButton">Publicar
+                        
+                    </Button>
                 </StackPanel>
             </Grid>
         </Grid>

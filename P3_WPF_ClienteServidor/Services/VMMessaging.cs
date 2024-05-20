@@ -149,5 +149,11 @@ namespace P3_WPF_ClienteServidor.Services
             EliminarDepartamentoEvent?.Invoke(null, d);
 
         }
+        public static EventHandler<int>? PublicarActividadEvent;
+        public static void PublicarActividad(int id)
+        {
+            PublicarActividadEvent?.Invoke(null, id);
+
+        }
     } 
 }
